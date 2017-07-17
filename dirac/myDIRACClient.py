@@ -1,8 +1,8 @@
 ###############################################################################
 #                              myDIRACClient.py                               #
 ###############################################################################
-"""This script is used to spawn as many client threads as we want, and every 
-one of them is going to connect to the DIRAC service and request for a 
+"""This script is used to spawn as many client threads as we want, and every
+one of them is going to connect to the DIRAC service and request for a
 dictionary."""
 
 #!/usr/bin/python
@@ -13,7 +13,7 @@ import time
 from DIRAC.Core.Base.Script import parseCommandLine
 from DIRAC.Core.DISET.RPCClient import RPCClient
 
-NUMBER_OF_THREADS = 10 #This is the number of client we want to spawn
+NUMBER_OF_THREADS = 1 #This is the number of client we want to spawn
 
 class Client(threading.Thread):
     """Thread representing a client"""
@@ -28,7 +28,7 @@ class Client(threading.Thread):
         then it requests the wanted dictionary to the server
         and stores it in its 'value' attribute"""
         connexion = RPCClient('Framework/Fibonacci')
-        self.value = connexion.bigDicoFib(12)
+        self.value = connexion.bigDicoFib(1)
 
 if __name__ == "__main__":
     parseCommandLine()
@@ -56,6 +56,6 @@ if __name__ == "__main__":
     print "amount of seconds taken: {}".format(amountOfTime)
 
     #We can store the 'amountOfTime' variable in any file we want
-    with open("../../../../environments/py27_env/multiMechProjects/rpcServers/valuesLists/DISETBigDicoFib12_1Thread.txt", "a") as myFile:
-        myFile.write(str(amountOfTime))
-        myFile.write(";")
+    #with open("../valuesLists/JSON_smallDicoFib30_1thread.txt", "a") as myFile:
+    #    myFile.write(str(amountOfTime))
+    #    myFile.write(";")
