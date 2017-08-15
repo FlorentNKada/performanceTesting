@@ -13,13 +13,13 @@ import time
 from DIRAC.Core.Base.Script import parseCommandLine
 from DIRAC.Core.DISET.RPCClient import RPCClient
 
-NUMBER_OF_THREADS = 1 #This is the number of client we want to spawn
+#This is the number of client we want to spawn
+NUMBER_OF_THREADS = 1
 
 class Client(threading.Thread):
     """Thread representing a client"""
     def __init__(self):
-        """A thread has:
-        - a value (which it gets from a rpc request to the server)"""
+        """A thread has a value, which it gets from a rpc request to the server"""
         super(Client, self).__init__()
         self.value=0
 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     start = time.time() #We start counting the time
 
     #Creating the threads
-    for i in range(NUMBER_OF_THREADS):
+    for i in range(1, NUMBER_OF_THREADS+1):
         print "creating thread no {}".format(i)
         th = Client()
         th.start()
@@ -48,14 +48,17 @@ if __name__ == "__main__":
     #Waiting for all the threads to finish
     for i in range(NUMBER_OF_THREADS):
         L[i].join()
-        print "thread no {} completed...".format(i)
+        print "thread no {} completed...".format(i+1)
 
     print "all the threads are closed..."
     end = time.time()
     amountOfTime = end-start #This is the amount of time taken to process all the requests of the clients
     print "amount of seconds taken: {}".format(amountOfTime)
 
-    #We can store the 'amountOfTime' variable in any file we want
-    #with open("../valuesLists/JSON_smallDicoFib30_1thread.txt", "a") as myFile:
-    #    myFile.write(str(amountOfTime))
-    #    myFile.write(";")
+    ################################################################################
+    # We can store the 'amountOfTime' variable in any file we want                 #
+    ################################################################################    
+    #with open("valuesLists/dip/DEncode_bigDicoFib1_5threads.txt", "a") as myFile: #
+      #myFile.write(str(amountOfTime))                                             #
+      #myFile.write(";")                                                           #
+    ################################################################################
