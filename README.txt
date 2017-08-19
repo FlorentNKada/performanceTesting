@@ -1,5 +1,5 @@
 ###############################################################################
-#                                  REDME.txt                                  #
+#                                  README.txt                                 #
 ###############################################################################
 
 Here are the files that were used to test the performances of the different
