@@ -32,26 +32,3 @@ class HelloHandler( RequestHandler ):
         if not whom:
             whom = self.requestDefaultWhom
         return S_OK( "Hello " + whom )
-
-    types_fibo = [types.IntType]
-
-    def export_fibo(self, n):
-        """Returns S_OK(fibo(n)) """
-
-# iterative Fibonacci function
-#        a=1
-#        b=1
-#        c=0
-#        i=0
-#        for i in range(3, n+1):
-#            c = a + b
-#            a = b
-#            b = c
-#        result = c
-
-# recursive Fibonacci function
-        if n <= 2:
-            result = 1
-        else:
-            result = self.export_fibo(n - 1)['Value'] + self.export_fibo(n - 2)['Value']
-        return S_OK(result)
