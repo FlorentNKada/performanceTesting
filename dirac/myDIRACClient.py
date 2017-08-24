@@ -15,6 +15,7 @@ from DIRAC.Core.DISET.RPCClient import RPCClient
 
 #This is the number of client we want to spawn
 NUMBER_OF_THREADS = 1
+l=list()
 
 class Client(threading.Thread):
     """Thread representing a client"""
@@ -55,10 +56,10 @@ if __name__ == "__main__":
     amountOfTime = end-start #This is the amount of time taken to process all the requests of the clients
     print "amount of seconds taken: {}".format(amountOfTime)
 
-    ################################################################################
-    # We can store the 'amountOfTime' variable in any file we want                 #
-    ################################################################################    
-    #with open("valuesLists/dip/DEncode_bigDicoFib1_5threads.txt", "a") as myFile: #
+    ###############################################################################
+    # We can store the 'amountOfTime' variable in any file we want                #
+    ###############################################################################
+    #with open("valuesLists/dirac/JSON_BigDicoFib1_1thread.txt", "a") as myFile:   #
       #myFile.write(str(amountOfTime))                                             #
       #myFile.write(";")                                                           #
-    ################################################################################
+    ###############################################################################

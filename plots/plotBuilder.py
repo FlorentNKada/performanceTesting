@@ -9,10 +9,10 @@
 
  #importing the libraries
 import matplotlib.lines as mlines
-import matplotlib.pyplot as plt                                                
-import pylab                                                                   
-#from matplotlib import rcParams                                               
-#rcParams.update({'figure.autolayout': True})                                  
+import matplotlib.pyplot as plt
+import pylab
+#from matplotlib import rcParams
+#rcParams.update({'figure.autolayout': True})
 
 def getListFromFile(fileName):
     """This function reads a list of values stored in a file, and makes
@@ -24,38 +24,28 @@ def getListFromFile(fileName):
         L = myLine.split(";") #We parse the list
         del L[-1] #We get rid of the last element (which is a carriage return most often)
 
-        for i in range(9):
+        for i in range(10):
             L[i] = float(L[i]) #Every element of the list is cast into a float
     return L
 
 if __name__ == "__main__":
 
-    #These lists will contain our time values
-    JSON_list_1Thread = []
-    DISETList_1Thread = []
-    threadList = []
-    processList = []
-    basicList = []
-
-    #This list is our abscissa axis. 
+    #This list is our abscissa axis.
     #We adjust the list acording to the number of measure we made
-    L = range(1,10,1) 
+    L = range(1,11,1)
 
     #We get our lists of measures from the files
-    JSON_list_1Thread = getListFromFile("valuesLists/JSON_smallDicoFib30_1thread.txt")
-    DISETList_1Thread = getListFromFile("valuesLists/DISETSmallDicoFib30_1Thread.txt")
-    basicList = getListFromFile("valuesLists/basicServerSmallDicoFib30.txt")
-    threadList = getListFromFile("valuesLists/threadServerSmallDicoFib30.txt")
-    processList = getListFromFile("valuesLists/processServerSmallDicoFib30.txt")
+    JSON = getListFromFile("/home/florent/Desktop/desktop/JSON_BigDicoFib1_1thread.txt")
+    DEncode = getListFromFile("/home/florent/Desktop/desktop/DEncode_bigDicoFib1_1thread.txt")
 
     print "All graphs acquired..."
 
     #We build the plot, with the options we want (style, color, ...)
-    line1 = plt.plot (L, basicList, linestyle = 'solid', marker = "o", color = "k", label = "xmlrpc basic server")
-    line2 = plt.plot (L, threadList, linestyle = 'solid', marker = "s", color = "k", label = "xmlrpc thread server")
-    line3 = plt.plot (L, processList, linestyle = 'solid', marker = "^", color = "k", label = "xmlrpc process server")
-    line4 = plt.plot (L, DISETList_1Thread, linestyle = 'solid', marker = "s", color = "r", label = "DISET w/ DEncode(1 thread)")
-    line5 = plt.plot (L, JSON_list_1Thread, linestyle = 'solid', marker = "o", color = "b", label = "DISET w/ JSON(1 thread)")
+    line1 = plt.plot (L, DEncode, linestyle = 'solid', marker = "o", color = "k", label = "DISET w/ DEncode(1 thread)")
+    line2 = plt.plot (L, JSON, linestyle = 'solid', marker = "o", color = "r", label = "DISET w/ JSON(1 thread)")
+    #line3 = plt.plot (L, processList, linestyle = 'solid', marker = "^", color = "k", label = "xmlrpc process server")
+    #line4 = plt.plot (L, DISETList_1Thread, linestyle = 'solid', marker = "s", color = "r", label = "DISET w/ DEncode(1 thread)")
+    #line5 = plt.plot (L, JSON_list_1Thread, linestyle = 'solid', marker = "o", color = "b", label = "DISET w/ JSON(1 thread)")
     #line6 = plt.plot (L, DISETList_5Threads, linestyle = 'solid', marker = "s", color = "g", label = "DISET ( no SSL, 5 threads)")
     #line5 = plt.plot (L, DISETList_15Thread, linestyle = 'solid', marker = "o", color = "k", label = "DISET ( no SSL, 15 threads)")
 
@@ -68,5 +58,5 @@ if __name__ == "__main__":
     plt.tight_layout()
 
     #We store the plot in a file
-    pylab.savefig('plots/noSSL/smallDicoFib30/xmlrpc_vs_DEncode_vs_JSON_smallDicoFib30.png', bbox_extra_artists=(myLegend,), bbox_inches='tight')
+    pylab.savefig('/home/florent/Desktop/desktop/DEncode_vs_JSON_bigDicoFib1.png', bbox_extra_artists=(myLegend,), bbox_inches='tight')
     print "graph stored"
