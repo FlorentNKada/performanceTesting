@@ -32,17 +32,17 @@ if __name__ == "__main__":
 
     #This list is our abscissa axis.
     #We adjust the list acording to the number of measure we made
-    L = range(1,11,1)
+    L = range(50000,500001,50000)
 
     #We get our lists of measures from the files
-    JSON = getListFromFile("/home/florent/Desktop/desktop/JSON_BigDicoFib1_1thread.txt")
-    DEncode = getListFromFile("/home/florent/Desktop/desktop/DEncode_bigDicoFib1_1thread.txt")
+    JSON = getListFromFile("/home/florent/performanceTesting/dirac/tests_out_of_DIRAC/varible_types/long/Json.txt")
+    DEncode = getListFromFile("/home/florent/performanceTesting/dirac/tests_out_of_DIRAC/varible_types/long/Dip.txt")
 
     print "All graphs acquired..."
 
     #We build the plot, with the options we want (style, color, ...)
-    line1 = plt.plot (L, DEncode, linestyle = 'solid', marker = "o", color = "k", label = "DISET w/ DEncode(1 thread)")
-    line2 = plt.plot (L, JSON, linestyle = 'solid', marker = "o", color = "r", label = "DISET w/ JSON(1 thread)")
+    line1 = plt.plot (L, DEncode, linestyle = 'solid', marker = "o", color = "k", label = "dip")
+    line2 = plt.plot (L, JSON, linestyle = 'solid', marker = "o", color = "r", label = "extended JSON")
     #line3 = plt.plot (L, processList, linestyle = 'solid', marker = "^", color = "k", label = "xmlrpc process server")
     #line4 = plt.plot (L, DISETList_1Thread, linestyle = 'solid', marker = "s", color = "r", label = "DISET w/ DEncode(1 thread)")
     #line5 = plt.plot (L, JSON_list_1Thread, linestyle = 'solid', marker = "o", color = "b", label = "DISET w/ JSON(1 thread)")
@@ -58,5 +58,5 @@ if __name__ == "__main__":
     plt.tight_layout()
 
     #We store the plot in a file
-    pylab.savefig('/home/florent/Desktop/desktop/DEncode_vs_JSON_bigDicoFib1.png', bbox_extra_artists=(myLegend,), bbox_inches='tight')
+    pylab.savefig('/home/florent/performanceTesting/dirac/tests_out_of_DIRAC/varible_types/long/long.png', bbox_extra_artists=(myLegend,), bbox_inches='tight')
     print "graph stored"
